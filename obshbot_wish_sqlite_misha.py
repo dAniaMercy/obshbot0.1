@@ -13,8 +13,7 @@ from pathlib import Path
 token = '6204506293:AAE4S02ArqABxDKu7WiUIZBjtyNWaOIgLC8'
 bot=telebot.TeleBot(token)
 
-token1 = '6345762065:AAGNpWtnBIvQ9Sua3-Jj1m_krDrkckHnUbw'
-bot1=telebot.TeleBot(token1)
+
 
 
 dt_now = datetime.datetime.now()
@@ -48,7 +47,7 @@ def start_message(message):
 		ded.db_table_val(user_id=us_id, user_name=us_nam, username=username, datareg = dr)
 		bot.send_message(message.chat.id, 'Привет! Ваше имя добавлено в базу данных!')
 
-	
+
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -63,18 +62,6 @@ def start_message(message):
     cdt=str(cdt)
     bot.send_message(message.chat.id, f'Привет, {str(message.chat.first_name)}! \nСпасибо за обращению в службу _test_ \n Чтобы зарегистрировать себя используй команду /addmyprof \n Чтобы прислать улику /report')
     print('\nUser:', "@",str(message.from_user.username), 'command: ',{str(message.text)}, '\ntime:', dt_now )
-
-@bot1.message_handler(commands=['all'])
-def start_message(message):
-    cdt=datetime.datetime.now()
-    cdt=str(cdt)
-    cursor = conn.execute("SELECT COUNT(*) from test")
-    raw = cursor.fetchall()
-	
-    print('\nUser:', "@",str(message.from_user.username), 'command: ',{str(message.text)}, '\ntime:', dt_now, '\n', raw )
-
-
-
 
 @bot.message_handler(commands=['report'])
 def get_text_messages(message):
